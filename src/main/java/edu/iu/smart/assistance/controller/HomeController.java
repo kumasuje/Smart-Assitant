@@ -46,6 +46,16 @@ public class HomeController {
         //   return ResponseEntity.ok(queryResult);
     }
 
+
+
+
+    @RequestMapping(value = "autoreply",method = RequestMethod.GET)
+    public String replyBackWithPost1(String token,String team_id,String team_domain,String channel_id,String channel_name,String user_id,String user_name,String command,String text,String response_url){
+        logger.info("Query Request is '{}'");
+
+        return "kuchNahi";
+    }
+
     @RequestMapping(value = "reply",method = RequestMethod.POST)
     public String replyBackWithPost(@RequestBody PayloadModel payloadModel){
         logger.info("Query Request is '{}'");
