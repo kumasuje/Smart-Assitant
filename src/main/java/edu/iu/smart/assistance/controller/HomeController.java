@@ -25,9 +25,10 @@ public class HomeController {
     private SuggestAnswer suggestAnswer;
 
 
-    @RequestMapping(value="reply",method = RequestMethod.GET)
-    public ResponseEntity<String> replyBack(String content){
+    @RequestMapping(value="reply",method = RequestMethod.GET,produces={"application/json","application/xml"}, consumes="application/json")
+    public ResponseEntity<String> replyBack(PayloadModel payloadModel){
 
+        String content = "";
         logger.info("Query Request is '{}'",content);
         String queryResult = suggestAnswer.processInput(content);
 
@@ -40,13 +41,16 @@ public class HomeController {
 
         }
 
-        return ResponseEntity.ok(queryResult);
+        return ResponseEntity.status(HttpStatus.OK).headers(responseHeaders).body(queryResult);
+
+        //   return ResponseEntity.ok(queryResult);
     }
 
     @RequestMapping(value = "reply",method = RequestMethod.POST)
     public String replyBackWithPost(@RequestBody PayloadModel payloadModel){
+        logger.info("Query Request is '{}'");
 
-        return "";
+        return "kuchNahi";
     }
 
 }
