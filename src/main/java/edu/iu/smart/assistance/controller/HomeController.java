@@ -1,6 +1,6 @@
 package edu.iu.smart.assistance.controller;
 
-import edu.iu.smart.assistance.model.PayloadModel;
+import edu.iu.smart.assistance.model.SlackResponse;
 import edu.iu.smart.assistance.model.WeekModel;
 import edu.iu.smart.assistance.service.SuggestAnswer;
 import org.slf4j.Logger;
@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,11 +53,17 @@ public class HomeController {
 
 
     @RequestMapping(value = "autoreply",method = RequestMethod.GET)
-    public String replyBackWithPost1(String token,String team_id,String team_domain,String channel_id,String channel_name,String user_id,String user_name,String command,String text,String response_url){
+    public SlackResponse replyBackWithPost1(String token, String team_id, String team_domain, String channel_id, String channel_name, String user_id, String user_name, String command, String text, String response_url){
         logger.info("Query Request is '{}' ");
 
         String queryResult = suggestAnswer.processInput(text);
-        return queryResult;
+        if(queryResult != null){
+            SlackResponse response = new SlackResponse();
+            response.setResponse_type("in_channel");
+            response.setText(queryResult);
+            return response;
+        }
+        return null;
     }
 
     @RequestMapping(value = "addToMemoryForSlack",method = RequestMethod.GET)
