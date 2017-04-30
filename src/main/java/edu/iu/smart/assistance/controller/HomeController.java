@@ -38,9 +38,7 @@ public class HomeController {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).headers(responseHeaders).body(null);
         }else {
             responseHeaders.set("auto-response", "true");
-
         }
-
         return ResponseEntity.status(HttpStatus.OK).headers(responseHeaders).body(queryResult);
     }
 
@@ -48,7 +46,7 @@ public class HomeController {
     @RequestMapping(value="addToMemory",method = RequestMethod.GET)
     public String addToMemory(String content){
 
-        logger.info("Adding this to memory '{}'",content);
+        logger.info("Adding this to memory '{}' ",content);
         suggestAnswer.addNewCases(content);
 
         return "";
@@ -57,7 +55,7 @@ public class HomeController {
 
     @RequestMapping(value = "autoreply",method = RequestMethod.GET)
     public String replyBackWithPost1(String token,String team_id,String team_domain,String channel_id,String channel_name,String user_id,String user_name,String command,String text,String response_url){
-        logger.info("Query Request is '{}'");
+        logger.info("Query Request is '{}' ");
 
         String queryResult = suggestAnswer.processInput(text);
         return queryResult;
@@ -71,11 +69,11 @@ public class HomeController {
         return "";
     }
 
-    @RequestMapping(value = "reply",method = RequestMethod.POST)
-    public String replyBackWithPost(@RequestBody PayloadModel payloadModel){
-        logger.info("Query Request is '{}'");
+    @RequestMapping(value = "myCalendar",method = RequestMethod.GET)
+    public WeekModel.DayModel[] getMyCalenderForNextWeek(){
+        logger.info("Calendar for next week");
 
-        return "kuchNahi";
+        return WeekModel.getDays();
     }
 
 }

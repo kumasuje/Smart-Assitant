@@ -1,5 +1,6 @@
 package edu.iu.smart.assistance.service;
 
+import edu.iu.smart.assistance.helper.FixedResponse;
 import edu.iu.smart.assistance.helper.QuestionFactory;
 import edu.iu.smart.assistance.helper.UserInfo;
 import edu.iu.smart.assistance.model.WeekModel;
@@ -35,6 +36,10 @@ public class SuggestAnswer {
     @Autowired
     private CaseBasedReasoning caseBasedReasoning;
 
+    @Autowired
+    private FixedResponse fixedResponse;
+
+
     public String processInput(String content){
 
         logger.info("parsing content '{}'",content);
@@ -42,12 +47,19 @@ public class SuggestAnswer {
         logger.info("size of parse inout {}",inputSet.size());
         String subject = null;
 
+        //Check if it has fixed response
+        if(fixedResponse.hasFixedResponse(content) != null){
+            subject = fixedResponse.hasFixedResponse(content);
+            return subject;
+        }
+
         //Learning From Past
         if(caseBasedReasoning.findCaseFromPast(content) != null){
 
             return caseBasedReasoning.findCaseFromPast(content);
         }
 
+        //Check The Rule Based system
         if(questionFactory.onePartQuestion(inputSet.get(0)) || questionFactory.twoPartQuestion(inputSet.get(0))){
 
             subject = subjectParser.getSubject(new HashSet<>(inputSet));
