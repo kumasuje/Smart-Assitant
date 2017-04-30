@@ -16,6 +16,7 @@ public class QuestionFactory {
 
     static Set<String> onePartQuestionSet = new HashSet<String>();
     static Set<String> twoPartQuestionSet = new HashSet<String>();
+    static Set<String> threePartQuestionSet = new HashSet<String>();
 
     QuestionFactory(){
 
@@ -35,10 +36,12 @@ public class QuestionFactory {
         twoPartQuestionSet.add("have");
         twoPartQuestionSet.add("shall");
         twoPartQuestionSet.add("should");
+
+        threePartQuestionSet.add("are");
     }
 
     public boolean onePartQuestion(String word){
-        logger.info("checking first word to determine question - '{}'",word);
+        logger.info("checking first word to determine Direct question - '{}'",word);
         if(onePartQuestionSet.contains(word)){
             logger.info("With first letter '{}' , Sentence is a question ",word);
             return true;
@@ -50,7 +53,24 @@ public class QuestionFactory {
 
     public boolean twoPartQuestion(String word){
 
-        if(twoPartQuestionSet.contains(word)) return true;
+        logger.info("checking first word to determine Indirect question - '{}'",word);
+        if(twoPartQuestionSet.contains(word)){
+            logger.info("With first letter '{}' , Sentence is a question ",word);
+            return true;
+        }
+        logger.info("With first letter '{}' , Sentence  not is a question ",word);
+        return false;
+
+    }
+
+    public boolean threePartQuestion(String word){
+
+        logger.info("checking first word to determine Other question - '{}'",word);
+        if(threePartQuestionSet.contains(word)){
+            logger.info("With first letter '{}' , Sentence is a question ",word);
+            return true;
+        }
+        logger.info("With first letter '{}' , Sentence  not is a question ",word);
         return false;
 
     }

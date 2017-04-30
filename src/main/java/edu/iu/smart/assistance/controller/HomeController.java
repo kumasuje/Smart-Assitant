@@ -1,6 +1,7 @@
 package edu.iu.smart.assistance.controller;
 
 import edu.iu.smart.assistance.model.PayloadModel;
+import edu.iu.smart.assistance.model.WeekModel;
 import edu.iu.smart.assistance.service.SuggestAnswer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,10 +26,9 @@ public class HomeController {
     private SuggestAnswer suggestAnswer;
 
 
-    @RequestMapping(value="reply",method = RequestMethod.GET,produces={"application/json","application/xml"}, consumes="application/json")
-    public ResponseEntity<String> replyBack(PayloadModel payloadModel){
+    @RequestMapping(value="reply",method = RequestMethod.GET)
+    public ResponseEntity<String> replyBack(String content){
 
-        String content = "";
         logger.info("Query Request is '{}'",content);
         String queryResult = suggestAnswer.processInput(content);
 
@@ -42,18 +42,25 @@ public class HomeController {
         }
 
         return ResponseEntity.status(HttpStatus.OK).headers(responseHeaders).body(queryResult);
-
-        //   return ResponseEntity.ok(queryResult);
     }
 
 
+    @RequestMapping(value="addToMemory",method = RequestMethod.GET)
+    public String addToMemory(String content){
+
+        logger.info("Adding this to memory '{}'",content);
+        suggestAnswer.addNewCases(content);
+
+        return "";
+    }
 
 
     @RequestMapping(value = "autoreply",method = RequestMethod.GET)
     public String replyBackWithPost1(String token,String team_id,String team_domain,String channel_id,String channel_name,String user_id,String user_name,String command,String text,String response_url){
         logger.info("Query Request is '{}'");
 
-        return "kuchNahi";
+        String queryResult = suggestAnswer.processInput(text);
+        return queryResult;
     }
 
     @RequestMapping(value = "reply",method = RequestMethod.POST)

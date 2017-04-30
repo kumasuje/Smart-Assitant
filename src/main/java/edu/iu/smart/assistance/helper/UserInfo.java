@@ -23,6 +23,7 @@ public class UserInfo {
         userInfo.put("email","If you are looking for my email id, my id is karan_lamba@iu.edu");
         userInfo.put("address","If you are looking for my address, my address 2679 H Park Doral");
         userInfo.put("number","If you are looking for my number, my number is 8123257361");
+        userInfo.put("notfree","It seems like I have sometime in calendar. May be some other time ? ");
     }
 
     public String getAnswerPerObjective(String objective){
