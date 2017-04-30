@@ -13,17 +13,17 @@ public class FixedResponse {
 
     public FixedResponse() {
 
-        fixedResponse.put("hey","/giphy hey");
-        fixedResponse.put("hi","/giphy hello");
-        fixedResponse.put("hello","/giphy hi");
+        fixedResponse.put("hey","/gif hey");
+        fixedResponse.put("hi","/gif hello");
+        fixedResponse.put("hello","/gif hi");
 
-        fixedResponse.put("good night","/giphy good night");
-        fixedResponse.put("goodnight","/giphy good night");
-        fixedResponse.put("good day","/giphy good day");
+        fixedResponse.put("good night","/gif good night");
+        fixedResponse.put("goodnight","/gif good night");
+        fixedResponse.put("good day","/gif good day");
 
 
-        fixedResponse.put("bye","/giphy bye");
-        fixedResponse.put("cya","/giphy cya");
+        fixedResponse.put("bye","/gif bye");
+        fixedResponse.put("cya","/gif cya");
     }
 
     Map<String,String> fixedResponse = new HashMap<String,String>();
