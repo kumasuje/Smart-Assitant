@@ -1,4 +1,4 @@
-#Class Project for B552 , Spring 2017 #
+# Class Project for B552 , Spring 2017 
 # Smart-Assitant
 Knowledge Based AI system for personal Use
 
