@@ -11,6 +11,10 @@ Steps to run the appication -
 2 > Make sure Maven is intalled on operating system. 
 3 > Build the application using maven 
     Go to the path where code is extracted (parent of pom.xml file) and the below code
+
+	
+	# Command
+	
 	# mvn clean install #
 	
 	Or
@@ -34,10 +38,10 @@ Steps to run the appication -
     Identify the result based on resposne status as explaied in output file. Answer to tyhe question will be returned as response body. 
 
 
-##Team Member -
+# Team Member -
 
-##Karan Lamba
-##Sujeet Kumar
+	# Karan Lamba #
+	# Sujeet Kumar #
 
 
 
