@@ -15,7 +15,7 @@ Steps to run the appication -
 	
 	# Command
 	
-	# mvn clean install #
+	mvn clean install
 	
 	Or
 	
@@ -23,7 +23,7 @@ Steps to run the appication -
 
 3 > A jar file will be generated , which can be trigger using below command
 
-	# java -jar <path><jar file name> #
+	java -jar <path><jar file name>
 	
 	Or
 	
@@ -33,15 +33,15 @@ Steps to run the appication -
 
     For example - If you are running the application on local Machine Send a HTTP GET request to below endpoint - 
 
-    # http://localhost:8080/reply?content=what is your address ? #
+     http://localhost:8080/reply?content=what is your address ? #
 
     Identify the result based on resposne status as explaied in output file. Answer to tyhe question will be returned as response body. 
 
 
 # Team Member -
 
-	# Karan Lamba #
-	# Sujeet Kumar #
+	 Karan Lamba 
+	 Sujeet Kumar 
 
 
 
